@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书香共享 - 二手书借阅平台</title>
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #DEB887;
+            --accent-color: #90EE90;
+            --background-color: #FFF8DC;
+            --text-color: #4A4A4A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* 搜索栏样式 */
+        .search-bar {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 80%;
+            max-width: 600px;
+            padding: 1rem;
+            border: 2px solid var(--secondary-color);
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        /* 分类过滤器样式 */
+        .category-filters {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 20px;
+            background-color: white;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* 特色书籍区域样式 */
+        .featured-books {
+            margin: 2rem 0;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .books-scroll {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scrollbar-width: none;
+        }
+
+        .book-card {
+            min-width: 200px;
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* 邀请横幅样式 */
+        .invite-banner {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .search-input {
+                width: 90%;
+            }
+            
+            .category-filters {
+                padding-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">书香共享</div>
+            <div class="nav-links">
+                <a href="#" class="category-btn">登录</a>
+                <a href="#" class="category-btn">注册</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="搜索你感兴趣的书籍...">
+        </div>
+
+        <div class="category-filters">
+            <button class="category-btn">文学</button>
+            <button class="category-btn">自助</button>
+            <button class="category-btn">教材</button>
+            <button class="category-btn">热门</button>
+        </div>
+
+        <section class="featured-books">
+            <h2 class="section-title">精选书籍</h2>
+            <div class="books-scroll">
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/200x250" alt="书籍封面" class="book-cover">
+                    <h3>三体</h3>
+                    <p>刘慈欣</p>
+                </div>
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/200x250" alt="书籍封面" class="book-cover">
+                    <h3>活着</h3>
+                    <p>余华</p>
+                </div>
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/200x250" alt="书籍封面" class="book-cover">
+                    <h3>百年孤独</h3>
+                    <p>加西亚·马尔克斯</p>
+                </div>
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/200x250" alt="书籍封面" class="book-cover">
+                    <h3>围城</h3>
+                    <p>钱钟书</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="invite-banner">
+            <h2>邀请好友，免押金借阅</h2>
+            <p>每邀请一位好友，即可获得一次免押金借阅机会</p>
+            <button class="category-btn" style="margin-top: 1rem;">立即邀请</button>
+        </div>
+    </div>
+</body>
+</html> 

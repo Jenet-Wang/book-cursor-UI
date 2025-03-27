@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结账 - 书香共享</title>
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #DEB887;
+            --accent-color: #90EE90;
+            --background-color: #FFF8DC;
+            --text-color: #4A4A4A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* 结账布局 */
+        .checkout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* 左侧内容 */
+        .checkout-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--secondary-color);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* 支付方式选择 */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .payment-method {
+            border: 2px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .payment-method.selected {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* 右侧订单摘要 */
+        .order-summary {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .book-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .book-cover {
+            width: 80px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .book-info {
+            flex: 1;
+        }
+
+        .price-breakdown {
+            margin: 1rem 0;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-item.total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--secondary-color);
+        }
+
+        .coupon-input {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .coupon-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        .apply-coupon-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .apply-coupon-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .confirm-pay-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .confirm-pay-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .checkout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">书香共享</div>
+            <div class="nav-links">
+                <a href="#" class="category-btn">登录</a>
+                <a href="#" class="category-btn">注册</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="checkout">
+            <div class="checkout-form">
+                <div class="form-section">
+                    <h2>收货信息</h2>
+                    <div class="form-group">
+                        <label>收货人姓名</label>
+                        <input type="text" placeholder="请输入收货人姓名">
+                    </div>
+                    <div class="form-group">
+                        <label>手机号码</label>
+                        <input type="tel" placeholder="请输入手机号码">
+                    </div>
+                    <div class="form-group">
+                        <label>详细地址</label>
+                        <input type="text" placeholder="请输入详细地址">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>支付方式</h2>
+                    <div class="payment-methods">
+                        <div class="payment-method selected">
+                            <img src="https://via.placeholder.com/40" alt="支付宝">
+                            <p>支付宝</p>
+                        </div>
+                        <div class="payment-method">
+                            <img src="https://via.placeholder.com/40" alt="微信支付">
+                            <p>微信支付</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <h2>订单摘要</h2>
+                <div class="book-item">
+                    <img src="https://via.placeholder.com/80x120" alt="三体封面" class="book-cover">
+                    <div class="book-info">
+                        <h3>三体</h3>
+                        <p>借阅时长：14天</p>
+                    </div>
+                </div>
+
+                <div class="price-breakdown">
+                    <div class="price-item">
+                        <span>借阅费用</span>
+                        <span>¥15</span>
+                    </div>
+                    <div class="price-item">
+                        <span>押金</span>
+                        <span>¥50</span>
+                    </div>
+                    <div class="price-item">
+                        <span>会员折扣</span>
+                        <span>-¥5</span>
+                    </div>
+                    <div class="price-item total">
+                        <span>总计</span>
+                        <span>¥60</span>
+                    </div>
+                </div>
+
+                <div class="coupon-input">
+                    <input type="text" placeholder="输入优惠码">
+                    <button class="apply-coupon-btn">应用</button>
+                </div>
+
+                <button class="confirm-pay-btn">确认支付</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

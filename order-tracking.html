@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单跟踪 - 书香共享</title>
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #DEB887;
+            --accent-color: #90EE90;
+            --background-color: #FFF8DC;
+            --text-color: #4A4A4A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* 订单跟踪布局 */
+        .order-tracking {
+            margin-top: 2rem;
+        }
+
+        .order-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .order-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .info-label {
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        /* 进度条样式 */
+        .progress-tracker {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            z-index: 1;
+        }
+
+        .step {
+            position: relative;
+            z-index: 2;
+            background: white;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-icon {
+            background: var(--primary-color);
+        }
+
+        .step.completed .step-icon {
+            background: var(--accent-color);
+        }
+
+        .step-title {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .step.active .step-title {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* 订单详情 */
+        .order-details {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .book-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .book-cover {
+            width: 100px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .book-info {
+            flex: 1;
+        }
+
+        .support-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .support-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .progress-steps {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .progress-steps::before {
+                display: none;
+            }
+
+            .step {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .step-icon {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">书香共享</div>
+            <div class="nav-links">
+                <a href="#" class="category-btn">登录</a>
+                <a href="#" class="category-btn">注册</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="order-tracking">
+            <div class="order-header">
+                <h2>订单号：202403150001</h2>
+                <div class="order-info">
+                    <div class="info-item">
+                        <span class="info-label">下单时间</span>
+                        <span>2024-03-15 14:30</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">预计送达</span>
+                        <span>2024-03-17</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">借阅时长</span>
+                        <span>14天</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-tracker">
+                <h3>订单状态</h3>
+                <div class="progress-steps">
+                    <div class="step completed">
+                        <div class="step-icon">✓</div>
+                        <div class="step-title">准备发货</div>
+                    </div>
+                    <div class="step completed">
+                        <div class="step-icon">✓</div>
+                        <div class="step-title">已发货</div>
+                    </div>
+                    <div class="step active">
+                        <div class="step-icon">3</div>
+                        <div class="step-title">配送中</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">4</div>
+                        <div class="step-title">借阅中</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">5</div>
+                        <div class="step-title">归还中</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">6</div>
+                        <div class="step-title">已完成</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-details">
+                <h3>订单详情</h3>
+                <div class="book-item">
+                    <img src="https://via.placeholder.com/100x150" alt="三体封面" class="book-cover">
+                    <div class="book-info">
+                        <h3>三体</h3>
+                        <p>作者：刘慈欣</p>
+                        <p>借阅费用：¥15</p>
+                        <p>押金：¥50</p>
+                    </div>
+                </div>
+
+                <a href="#" class="support-button">联系客服</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

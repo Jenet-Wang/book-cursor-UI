@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邀请好友 - 书香共享</title>
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #DEB887;
+            --accent-color: #90EE90;
+            --background-color: #FFF8DC;
+            --text-color: #4A4A4A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* 邀请页面布局 */
+        .invite {
+            margin-top: 2rem;
+        }
+
+        /* 邀请卡片 */
+        .invite-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .invite-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .invite-description {
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        /* 邀请链接 */
+        .invite-link {
+            background: var(--background-color);
+            padding: 1rem;
+            border-radius: 5px;
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .invite-link input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid var(--secondary-color);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .copy-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* 邀请奖励 */
+        .rewards {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .reward-card {
+            background: var(--background-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .reward-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* 邀请记录 */
+        .invite-history {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .history-table th,
+        .history-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .history-table th {
+            background-color: var(--background-color);
+            font-weight: bold;
+        }
+
+        /* 分享按钮 */
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .share-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .share-btn.wechat {
+            background-color: #07C160;
+            color: white;
+        }
+
+        .share-btn.weibo {
+            background-color: #E6162D;
+            color: white;
+        }
+
+        .share-btn.qq {
+            background-color: #12B7F5;
+            color: white;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .invite-link {
+                flex-direction: column;
+            }
+
+            .copy-btn {
+                width: 100%;
+            }
+
+            .share-buttons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">书香共享</div>
+            <div class="nav-links">
+                <a href="#" class="category-btn">登录</a>
+                <a href="#" class="category-btn">注册</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="invite">
+            <div class="invite-card">
+                <h1 class="invite-title">邀请好友，共享书香</h1>
+                <p class="invite-description">
+                    每邀请一位好友注册并完成首次借阅，您和好友都将获得一次免押金借阅机会！
+                </p>
+
+                <div class="invite-link">
+                    <input type="text" value="https://booksharing.com/invite/abc123" readonly>
+                    <button class="copy-btn">复制链接</button>
+                </div>
+
+                <div class="share-buttons">
+                    <button class="share-btn wechat">
+                        <span>微信</span>
+                    </button>
+                    <button class="share-btn weibo">
+                        <span>微博</span>
+                    </button>
+                    <button class="share-btn qq">
+                        <span>QQ</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="rewards">
+                <h2>邀请奖励</h2>
+                <div class="rewards-grid">
+                    <div class="reward-card">
+                        <div class="reward-icon">🎁</div>
+                        <h3>免押金借阅</h3>
+                        <p>好友完成首次借阅后，您可获得一次免押金借阅机会</p>
+                    </div>
+                    <div class="reward-card">
+                        <div class="reward-icon">💰</div>
+                        <h3>额外奖励</h3>
+                        <p>好友使用您的邀请码注册，您可获得5元借阅券</p>
+                    </div>
+                    <div class="reward-card">
+                        <div class="reward-icon">🎯</div>
+                        <h3>好友特权</h3>
+                        <p>好友注册即可获得7天会员体验</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="invite-history">
+                <h2>邀请记录</h2>
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>好友昵称</th>
+                            <th>注册时间</th>
+                            <th>状态</th>
+                            <th>奖励</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>张三</td>
+                            <td>2024-03-15</td>
+                            <td>已完成借阅</td>
+                            <td>已发放</td>
+                        </tr>
+                        <tr>
+                            <td>李四</td>
+                            <td>2024-03-14</td>
+                            <td>已注册</td>
+                            <td>待完成</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

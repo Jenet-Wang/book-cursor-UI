@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三体 - 书香共享</title>
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #DEB887;
+            --accent-color: #90EE90;
+            --background-color: #FFF8DC;
+            --text-color: #4A4A4A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* 书籍详情布局 */
+        .book-detail {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .book-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .book-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .book-author {
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .book-description {
+            line-height: 1.6;
+        }
+
+        /* 借阅选项 */
+        .borrow-options {
+            background: var(--background-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .duration-selector {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .duration-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--secondary-color);
+            border-radius: 20px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .duration-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .price-info {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .borrow-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .borrow-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* 评价区域 */
+        .reviews {
+            margin-top: 2rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .rating {
+            color: #FFD700;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .book-detail {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">书香共享</div>
+            <div class="nav-links">
+                <a href="#" class="category-btn">登录</a>
+                <a href="#" class="category-btn">注册</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="book-detail">
+            <div class="book-cover-container">
+                <img src="https://via.placeholder.com/300x400" alt="三体封面" class="book-cover">
+            </div>
+            <div class="book-info">
+                <h1 class="book-title">三体</h1>
+                <p class="book-author">作者：刘慈欣</p>
+                <p class="book-description">
+                    文化大革命如火如荼进行的同时，军方探寻外星文明的绝秘计划"红岸工程"取得了突破性进展。但在按下发射键的那一刻，历经劫难的叶文洁没有意识到，她彻底改变了人类的命运。地球文明向宇宙发出的第一声啼鸣，以太阳为中心，以光速向宇宙深处飞驰……
+                </p>
+
+                <div class="borrow-options">
+                    <h3>选择借阅时长</h3>
+                    <div class="duration-selector">
+                        <button class="duration-btn">7天</button>
+                        <button class="duration-btn">14天</button>
+                        <button class="duration-btn">30天</button>
+                    </div>
+
+                    <div class="price-info">
+                        <div class="price-item">
+                            <span>借阅费用</span>
+                            <span>¥15</span>
+                        </div>
+                        <div class="price-item">
+                            <span>押金</span>
+                            <span>¥50</span>
+                        </div>
+                        <div class="price-item">
+                            <span>会员折扣</span>
+                            <span>-¥5</span>
+                        </div>
+                        <div class="price-item" style="font-weight: bold;">
+                            <span>总计</span>
+                            <span>¥60</span>
+                        </div>
+                    </div>
+
+                    <button class="borrow-btn">立即借阅</button>
+                    <p style="text-align: center; margin-top: 1rem;">
+                        <a href="#" style="color: var(--primary-color);">邀请好友，免押金借阅</a>
+                    </p>
+                </div>
+
+                <div class="reviews">
+                    <h3>读者评价</h3>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span>张三</span>
+                            <span class="rating">★★★★★</span>
+                        </div>
+                        <p>非常精彩的一部科幻小说，情节紧凑，想象力丰富。</p>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span>李四</span>
+                            <span class="rating">★★★★☆</span>
+                        </div>
+                        <p>整体不错，但有些情节略显复杂，需要仔细阅读。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
